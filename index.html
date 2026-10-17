@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portofolio - Rafael Cahya Ramadhan | SMKN 68</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Plus Jakarta Sans', 'sans-serif'],
+            },
+            colors: {
+              brand: {
+                50: '#fff7ed',
+                100: '#ffedd5',
+                400: '#fb923c',
+                500: '#f97316',
+                600: '#ea580c',
+                900: '#1e140e',
+                950: '#120b07',
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      /* ===== Page Preloader ===== */
+      #preloader {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: #120b07;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.6s ease, visibility 0.6s ease;
+      }
+      #preloader.loaded {
+        opacity: 0;
+        visibility: hidden;
+      }
+      .loader-spinner {
+        width: 48px;
+        height: 48px;
+        border: 4px solid rgba(249, 115, 22, 0.15);
+        border-top-color: #f97316;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+      }
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+
+      /* ===== Glass Card ===== */
+      .glass-card {
+        background: rgba(30, 22, 17, 0.75);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .glow-effect {
+        box-shadow: 0 0 30px -5px rgba(249, 115, 22, 0.25);
+      }
+
+      /* ===== Scroll-Triggered Entrance Animations ===== */
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-left {
+        opacity: 0;
+        transform: translateX(-60px);
+        transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .reveal-left.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .reveal-right {
+        opacity: 0;
+        transform: translateX(60px);
+        transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .reveal-right.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .reveal-scale {
+        opacity: 0;
+        transform: scale(0.85);
+        transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .reveal-scale.visible {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      /* Staggered delays for children */
+      .stagger-1 { transition-delay: 0.1s; }
+      .stagger-2 { transition-delay: 0.2s; }
+      .stagger-3 { transition-delay: 0.3s; }
+      .stagger-4 { transition-delay: 0.4s; }
+
+      /* ===== Card Hover Effects ===== */
+      .card-hover {
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                    box-shadow 0.4s ease,
+                    border-color 0.4s ease;
+      }
+      .card-hover:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 20px 40px -12px rgba(249, 115, 22, 0.2);
+      }
+
+      /* ===== Animated Gradient Background ===== */
+      .hero-gradient {
+        background: 
+          radial-gradient(ellipse 80% 50% at 50% -20%, rgba(249, 115, 22, 0.12) 0%, transparent 50%),
+          radial-gradient(ellipse 60% 40% at 80% 50%, rgba(251, 146, 60, 0.08) 0%, transparent 50%),
+          radial-gradient(ellipse 60% 40% at 20% 60%, rgba(245, 158, 11, 0.06) 0%, transparent 50%);
+        animation: gradientShift 8s ease-in-out infinite alternate;
+      }
+      @keyframes gradientShift {
+        0% { 
+          background-position: 0% 0%, 100% 50%, 0% 60%; 
+        }
+        100% { 
+          background-position: 100% 0%, 0% 50%, 100% 60%; 
+        }
+      }
+
+      /* ===== Floating Particles ===== */
+      .particle {
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
+        animation: float linear infinite;
+      }
+      @keyframes float {
+        0% {
+          transform: translateY(100vh) rotate(0deg);
+          opacity: 0;
+        }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% {
+          transform: translateY(-100px) rotate(720deg);
+          opacity: 0;
+        }
+      }
+
+      /* ===== Typing Cursor ===== */
+      .typing-cursor::after {
+        content: '|';
+        animation: blink 0.8s step-end infinite;
+        color: #fb923c;
+        font-weight: 300;
+      }
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+      }
+
+      /* ===== Mobile Menu Transition ===== */
+      #mobile-menu {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                    opacity 0.3s ease,
+                    padding 0.4s ease;
+        opacity: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+      #mobile-menu.menu-open {
+        max-height: 200px;
+        opacity: 1;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+      }
+
+      /* ===== Scroll-to-Top Button ===== */
+      #scroll-top {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(12px);
+        transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease, background-color 0.3s ease;
+      }
+      #scroll-top.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      /* ===== Navbar Active Link ===== */
+      .nav-link {
+        position: relative;
+        transition: color 0.3s ease;
+      }
+      .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #fb923c, #f59e0b);
+        border-radius: 1px;
+        transition: width 0.3s ease, left 0.3s ease;
+      }
+      .nav-link:hover::after,
+      .nav-link.active::after {
+        width: 100%;
+        left: 0;
+      }
+      .nav-link.active {
+        color: #fb923c;
+      }
+
+      /* ===== Profile Image Rings Animation ===== */
+      .profile-pulse-ring {
+        animation: profilePulseRing 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+      .profile-orbit-ring {
+        animation: profileRotateSlow 20s linear infinite;
+      }
+      @keyframes profilePulseRing {
+        0%, 100% {
+          transform: scale(1);
+          opacity: 0.8;
+          box-shadow: 0 0 15px rgba(249, 115, 22, 0.35);
+        }
+        50% {
+          transform: scale(1.08);
+          opacity: 0.25;
+          box-shadow: 0 0 25px rgba(249, 115, 22, 0.55);
+        }
+      }
+      @keyframes profileRotateSlow {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+
+      /* ===== Section Divider ===== */
+      .section-divider {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.3), transparent);
+      }
+
+      /* ===== Icon Float Animation ===== */
+      .icon-float {
+        transition: transform 0.4s ease, background-color 0.4s ease;
+      }
+      .card-hover:hover .icon-float {
+        transform: translateY(-4px) scale(1.1);
+      }
+
+      /* ===== Smooth body reveal after preloader ===== */
+      .body-hidden {
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body class="bg-brand-950 text-slate-100 font-sans antialiased selection:bg-brand-500 selection:text-white min-h-screen body-hidden">
+    
+    <!-- Preloader -->
+    <div id="preloader">
+      <div class="loader-spinner"></div>
+    </div>
+
+    <!-- Floating Particles Container -->
+    <div id="particles" class="fixed inset-0 pointer-events-none z-0 overflow-hidden"></div>
+
+    <!-- Navbar -->
+    <header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 glass-card border-b border-stone-800/80">
+      <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+        <a href="#" class="inline-block group transition-all duration-300 hover:scale-105">
+          <span class="text-2xl font-black italic text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-300 to-orange-500 hover:from-orange-300 hover:to-amber-200 transition-all duration-300" style="font-family: 'Playfair Display', serif;">Rafael</span>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+          <a href="#about" class="nav-link hover:text-brand-400">Tentang Saya</a>
+          <a href="#career" class="nav-link hover:text-brand-400">Target Karier</a>
+        </nav>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="menu-btn" class="md:hidden text-slate-300 hover:text-white focus:outline-none transition-transform duration-300" aria-label="Toggle menu">
+          <i class="fa-solid fa-bars text-2xl transition-transform duration-300"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Menu Dropdown -->
+      <div id="mobile-menu" class="md:hidden glass-card border-t border-stone-800 px-6 flex flex-col gap-4 text-slate-300">
+        <a href="#about" class="nav-link hover:text-brand-400 transition-colors">Tentang Saya</a>
+        <a href="#career" class="nav-link hover:text-brand-400 transition-colors">Target Karier</a>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-36 pb-20 md:pt-48 md:pb-32 px-6 relative overflow-hidden hero-gradient">
+      
+      <!-- Animated Glow Orbs -->
+      <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand-500/15 rounded-full blur-3xl pointer-events-none animate-pulse"></div>
+      <div class="absolute bottom-0 right-0 w-72 h-72 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" style="animation: gradientShift 6s ease-in-out infinite alternate-reverse"></div>
+
+      <div class="max-w-6xl mx-auto grid md:grid-cols-12 gap-12 items-center relative z-10">
+        <div class="md:col-span-7 space-y-6 text-center md:text-left reveal-left">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-card text-brand-400 text-xs font-semibold tracking-wide uppercase border border-brand-500/20 hover:border-brand-500/40 transition-all duration-300 hover:shadow-lg hover:shadow-brand-500/10">
+            <i class="fa-solid fa-graduation-cap"></i> Siswa SMKN 68 Jakarta
+          </div>
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+            Halo, Saya <br class="hidden sm:inline" />
+            <span id="typed-name" class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-300 to-orange-500"></span><span class="typing-cursor"></span>
+          </h1>
+          <p class="text-stone-300 text-lg max-w-xl leading-relaxed mx-auto md:mx-0">Siswa kejuruan yang berdedikasi tinggi dalam mencari karier, eksplorasi yang luas, serta semangat yang kuat.</p>
+          <div class="flex flex-wrap gap-4 justify-center md:justify-start pt-2">
+            <a href="#about" class="group px-6 py-3.5 bg-brand-600 hover:bg-brand-500 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-brand-600/30 hover:shadow-brand-500/40 hover:scale-105 flex items-center gap-2">
+              <span>Tentang Saya</span>
+              <i class="fa-solid fa-arrow-right text-sm transition-transform duration-300 group-hover:translate-x-1"></i>
+            </a>
+            <a href="#career" class="px-6 py-3.5 glass-card hover:bg-stone-800 text-slate-200 font-semibold rounded-xl transition-all duration-300 border border-stone-700/80 hover:border-brand-500/30 hover:scale-105">Target Karier</a>
+          </div>
+        </div>
+
+        <!-- Profile Avatar Card -->
+        <div class="md:col-span-5 flex justify-center reveal-right">
+          <div class="relative w-64 h-64 sm:w-80 sm:h-80 rounded-3xl p-3 glass-card glow-effect transition-all duration-500 hover:shadow-[0_0_50px_-5px_rgba(249,115,22,0.4)]">
+            <div class="w-full h-full rounded-2xl bg-stone-900/90 flex flex-col items-center justify-center text-center p-6 border border-stone-800 relative overflow-hidden group">
+              <!-- Hover Shimmer Effect -->
+              <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></div>
+              
+              <!-- Foto Profil -->
+              <div class="relative w-28 h-28 mb-4 flex items-center justify-center">
+                <!-- Glowing Aura -->
+                <div class="absolute -inset-2 rounded-full bg-gradient-to-tr from-brand-500/30 via-amber-500/20 to-orange-600/30 blur-md pointer-events-none"></div>
+                
+                <!-- Rotating subtle dashed accent ring -->
+                <div class="profile-orbit-ring absolute -inset-2 rounded-full border border-dashed border-brand-400/40 pointer-events-none"></div>
+
+                <!-- Pulsing outer ring -->
+                <div class="profile-pulse-ring absolute -inset-1 rounded-full border-2 border-brand-400/70 pointer-events-none"></div>
+
+                <!-- Avatar Image Box -->
+                <div class="relative w-full h-full rounded-full p-[2px] bg-gradient-to-tr from-brand-500 via-amber-400 to-orange-500 shadow-xl overflow-hidden">
+                  <img
+                    src="Muka gw.jpg"
+                    alt="Rafael Cahya Ramadhan"
+                    class="w-full h-full rounded-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    onerror="
+                      this.onerror = null;
+                      this.src = 'https://ui-avatars.com/api/?name=Rafael+Cahya+Ramadhan&background=ea580c&color=fff&size=128';
+                    "
+                  />
+                </div>
+              </div>
+              <h3 class="text-xl font-bold text-white transition-colors duration-300 group-hover:text-brand-400">Rafael Cahya R.</h3>
+              <p class="text-brand-400 text-sm font-medium mt-1">SMKN 68 Jakarta</p>
+              <p class="text-xs text-stone-400 mt-2">Passion dalam suatu hal yang baru & Teknologi Digital</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 reveal" style="transition-delay: 1s;">
+        <a href="#about" class="flex flex-col items-center gap-2 text-stone-500 hover:text-brand-400 transition-colors duration-300">
+          <span class="text-xs tracking-widest uppercase">Scroll</span>
+          <i class="fa-solid fa-chevron-down text-sm animate-bounce"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-6 relative">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold text-brand-400 border border-brand-500/20 mb-4 tracking-wide uppercase">
+            <i class="fa-solid fa-user"></i> Tentang
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-bold text-white">Tentang Saya</h2>
+          <p class="text-stone-400 mt-3">Mengenal lebih dekat latar belakang, hobi, dan perjalanan hidup saya.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Latar Belakang -->
+          <div class="glass-card p-8 rounded-2xl border border-stone-800 space-y-4 card-hover reveal stagger-1 group">
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center text-xl icon-float">
+              <i class="fa-solid fa-address-card"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white transition-colors duration-300 group-hover:text-brand-400">Latar Belakang</h3>
+            <p class="text-stone-300 text-sm leading-relaxed">Saya adalah siswa di SMKN 68 Jakarta yang memiliki ketertarikan mendalam pada dunia teknologi, dan pengembangan diri.</p>
+          </div>
+
+          <!-- Hobi -->
+          <div class="glass-card p-8 rounded-2xl border border-stone-800 space-y-4 card-hover reveal stagger-2 group">
+            <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl icon-float">
+              <i class="fa-solid fa-gamepad"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white transition-colors duration-300 group-hover:text-amber-400">Hobi</h3>
+            <p class="text-stone-300 text-sm leading-relaxed">Suka mengeksplorasi hal yang baru, suka Berbincang, mencoba menjadi lebih baik, mencoba semua hal yang menarik.</p>
+          </div>
+
+          <!-- Perjalanan Hidup -->
+          <div class="glass-card p-8 rounded-2xl border border-stone-800 space-y-4 card-hover reveal stagger-3 group">
+            <div class="w-12 h-12 rounded-xl bg-orange-500/10 text-orange-400 flex items-center justify-center text-xl icon-float">
+              <i class="fa-solid fa-route"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white transition-colors duration-300 group-hover:text-orange-400">Perjalanan Hidup</h3>
+            <p class="text-stone-300 text-sm leading-relaxed">
+              Berawal dari rasa ingin tahu tentang cara kerja aplikasi dan internet, kini saya terus berproses di SMKN 68 untuk mengasah keahlian teknis guna bersiap memasuki dunia industri.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+
+    <!-- Career Section -->
+    <section id="career" class="py-20 px-6 bg-stone-900/40 relative">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold text-brand-400 border border-brand-500/20 mb-4 tracking-wide uppercase">
+            <i class="fa-solid fa-rocket"></i> Karier
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-bold text-white">Target Karier & Masa Depan</h2>
+          <p class="text-stone-400 mt-3">Target utama saya setelah lulus dari SMKN 68 Jakarta adalah <span class="text-brand-400 font-semibold">Bekerja sambil Kuliah di Politeknik Negeri Jakarta (PNJ)</span>.</p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Kuliah di PNJ -->
+          <div class="glass-card p-6 rounded-2xl border border-stone-800 flex flex-col gap-3 card-hover reveal stagger-1 group">
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center text-2xl mb-1 icon-float">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <h4 class="font-bold text-white text-lg transition-colors duration-300 group-hover:text-brand-400">Kuliah di PNJ</h4>
+            <p class="text-xs text-stone-400 leading-relaxed">Melanjutkan pendidikan vokasi di Politeknik Negeri Jakarta untuk memperdalam ilmu akademik dan gelar spesialisasi.</p>
+          </div>
+
+          <!-- Bekerja di Industri -->
+          <div class="glass-card p-6 rounded-2xl border border-stone-800 flex flex-col gap-3 card-hover reveal stagger-2 group">
+            <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-2xl mb-1 icon-float">
+              <i class="fa-solid fa-briefcase"></i>
+            </div>
+            <h4 class="font-bold text-white text-lg transition-colors duration-300 group-hover:text-amber-400">Bekerja di Industri</h4>
+            <p class="text-xs text-stone-400 leading-relaxed">Menerapkan keahlian praktis hasil pembelajaran di SMKN 68 secara langsung pada dunia kerja profesional.</p>
+          </div>
+
+          <!-- Kemandirian Finansial -->
+          <div class="glass-card p-6 rounded-2xl border border-stone-800 flex flex-col gap-3 card-hover reveal stagger-3 group">
+            <div class="w-12 h-12 rounded-xl bg-orange-500/10 text-orange-400 flex items-center justify-center text-2xl mb-1 icon-float">
+              <i class="fa-solid fa-wallet"></i>
+            </div>
+            <h4 class="font-bold text-white text-lg transition-colors duration-300 group-hover:text-orange-400">Kemandirian Finansial</h4>
+            <p class="text-xs text-stone-400 leading-relaxed">Membiayai pendidikan perkuliahan PNJ secara mandiri dari hasil kerja keras di dunia industri.</p>
+          </div>
+
+          <!-- Manajemen Waktu & Disiplin -->
+          <div class="glass-card p-6 rounded-2xl border border-stone-800 flex flex-col gap-3 card-hover reveal stagger-4 group">
+            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-2xl mb-1 icon-float">
+              <i class="fa-solid fa-clock-rotate-left"></i>
+            </div>
+            <h4 class="font-bold text-white text-lg transition-colors duration-300 group-hover:text-emerald-400">Manajemen Waktu</h4>
+            <p class="text-xs text-stone-400 leading-relaxed">Membangun disiplin tinggi serta membagi fokus secara profesional antara karier kerja dan studi di PNJ.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 text-center border-t border-stone-800/80 relative overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-t from-brand-950 to-transparent pointer-events-none"></div>
+      <div class="relative z-10 space-y-4 reveal">
+        <div class="flex justify-center gap-4">
+          <a href="#" class="w-10 h-10 rounded-full glass-card flex items-center justify-center text-stone-400 hover:text-brand-400 hover:border-brand-500/40 transition-all duration-300 hover:scale-110 border border-stone-700/60" aria-label="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="#" class="w-10 h-10 rounded-full glass-card flex items-center justify-center text-stone-400 hover:text-brand-400 hover:border-brand-500/40 transition-all duration-300 hover:scale-110 border border-stone-700/60" aria-label="GitHub">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a href="#" class="w-10 h-10 rounded-full glass-card flex items-center justify-center text-stone-400 hover:text-brand-400 hover:border-brand-500/40 transition-all duration-300 hover:scale-110 border border-stone-700/60" aria-label="LinkedIn">
+            <i class="fa-brands fa-linkedin-in"></i>
+          </a>
+        </div>
+        <p class="text-stone-500 text-sm">&copy; 2026 Rafael Cahya Ramadhan - SMKN 68 Jakarta. Dibuat dengan hati ❤️.</p>
+      </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scroll-top" class="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-brand-600 hover:bg-brand-500 text-white shadow-lg shadow-brand-600/30 flex items-center justify-center text-lg hover:scale-110 active:scale-95" aria-label="Scroll to top">
+      <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- All Scripts -->
+    <script>
+      // ===== Preloader =====
+      window.addEventListener('load', () => {
+        const preloader = document.getElementById('preloader');
+        preloader.classList.add('loaded');
+        document.body.classList.remove('body-hidden');
+        // Remove preloader from DOM after transition
+        setTimeout(() => preloader.remove(), 600);
+      });
+
+      // ===== Typing Animation =====
+      (function typeAnimation() {
+        const text = 'Rafael Cahya Ramadhan';
+        const el = document.getElementById('typed-name');
+        let i = 0;
+        function type() {
+          if (i <= text.length) {
+            el.textContent = text.substring(0, i);
+            i++;
+            setTimeout(type, 80);
+          }
+        }
+        // Start typing after a small delay for dramatic effect
+        setTimeout(type, 800);
+      })();
+
+      // ===== Mobile Menu Toggle with Animation =====
+      const menuBtn = document.getElementById('menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const menuIcon = menuBtn.querySelector('i');
+      let menuOpen = false;
+
+      menuBtn.addEventListener('click', () => {
+        menuOpen = !menuOpen;
+        mobileMenu.classList.toggle('menu-open');
+        // Animate icon rotation
+        if (menuOpen) {
+          menuIcon.classList.remove('fa-bars');
+          menuIcon.classList.add('fa-xmark');
+          menuBtn.style.transform = 'rotate(180deg)';
+        } else {
+          menuIcon.classList.remove('fa-xmark');
+          menuIcon.classList.add('fa-bars');
+          menuBtn.style.transform = 'rotate(0deg)';
+        }
+      });
+
+      // Close mobile menu when clicking a link
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          menuOpen = false;
+          mobileMenu.classList.remove('menu-open');
+          menuIcon.classList.remove('fa-xmark');
+          menuIcon.classList.add('fa-bars');
+          menuBtn.style.transform = 'rotate(0deg)';
+        });
+      });
+
+      // ===== Scroll-Triggered Reveal Animations =====
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -60px 0px'
+      });
+
+      document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
+        revealObserver.observe(el);
+      });
+
+      // ===== Navbar Scroll Effects =====
+      const navbar = document.getElementById('navbar');
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('.nav-link');
+
+      window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+
+        // Navbar background opacity
+        if (scrollY > 50) {
+          navbar.style.boxShadow = '0 10px 40px rgba(0, 0, 0, 0.4)';
+          navbar.style.borderBottomColor = 'rgba(249, 115, 22, 0.1)';
+        } else {
+          navbar.style.boxShadow = 'none';
+          navbar.style.borderBottomColor = '';
+        }
+
+        // Active nav link highlighting
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 120;
+          if (scrollY >= sectionTop) {
+            current = section.getAttribute('id');
+          }
+        });
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + current) {
+            link.classList.add('active');
+          }
+        });
+      });
+
+      // ===== Scroll to Top =====
+      const scrollTopBtn = document.getElementById('scroll-top');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) {
+          scrollTopBtn.classList.add('show');
+        } else {
+          scrollTopBtn.classList.remove('show');
+        }
+      });
+      scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      // ===== Floating Particles =====
+      (function createParticles() {
+        const container = document.getElementById('particles');
+        const colors = ['#f97316', '#fb923c', '#f59e0b', '#fbbf24'];
+        
+        function spawnParticle() {
+          const particle = document.createElement('div');
+          particle.classList.add('particle');
+          const size = Math.random() * 4 + 2;
+          const x = Math.random() * 100;
+          const duration = Math.random() * 15 + 10;
+          const color = colors[Math.floor(Math.random() * colors.length)];
+          
+          particle.style.cssText = `
+            width: ${size}px;
+            height: ${size}px;
+            left: ${x}%;
+            bottom: -10px;
+            background: ${color};
+            opacity: 0;
+            animation-duration: ${duration}s;
+            animation-delay: 0s;
+          `;
+          
+          container.appendChild(particle);
+          
+          // Remove particle after animation completes
+          setTimeout(() => particle.remove(), duration * 1000);
+        }
+
+        // Spawn particles periodically
+        setInterval(spawnParticle, 2000);
+        // Initial burst
+        for (let i = 0; i < 6; i++) {
+          setTimeout(spawnParticle, i * 400);
+        }
+      })();
+
+      // ===== Smooth Anchor Scrolling (for browsers without scroll-smooth support) =====
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          e.preventDefault();
+          const target = document.querySelector(targetId);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
