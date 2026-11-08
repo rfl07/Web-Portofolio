@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portofolio - Rafael Cahya Ramadhan | SMKN 68</title>
+    <title>Rafael Cahya Ramadhan — Portfolio</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
@@ -11,23 +11,27 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <script>
       tailwind.config = {
         theme: {
           extend: {
             fontFamily: {
-              sans: ['Plus Jakarta Sans', 'sans-serif'],
+              sans: ['Inter', 'system-ui', 'sans-serif'],
+              display: ['Sora', 'sans-serif'],
             },
             colors: {
-              brand: {
-                50: '#fff7ed',
-                100: '#ffedd5',
-                400: '#fb923c',
-                500: '#f97316',
-                600: '#ea580c',
-                900: '#1e140e',
-                950: '#120b07',
+              surface: {
+                50: '#fafafa',
+                100: '#f4f4f5',
+                800: '#18181b',
+                900: '#111113',
+                950: '#09090b',
+              },
+              accent: {
+                400: '#f59e0b',
+                500: '#f59e0b',
+                600: '#d97706',
               },
             },
           },
@@ -35,183 +39,68 @@
       };
     </script>
     <style>
-      /* ===== Page Preloader ===== */
+      /* ===== Base ===== */
+      ::selection {
+        background: rgba(245, 158, 11, 0.25);
+        color: #fff;
+      }
+
+      /* ===== Preloader ===== */
       #preloader {
         position: fixed;
         inset: 0;
         z-index: 9999;
-        background: #120b07;
+        background: #09090b;
         display: flex;
         align-items: center;
         justify-content: center;
-        transition: opacity 0.6s ease, visibility 0.6s ease;
+        transition: opacity 0.5s ease, visibility 0.5s ease;
       }
       #preloader.loaded {
         opacity: 0;
         visibility: hidden;
       }
-      .loader-spinner {
-        width: 48px;
-        height: 48px;
-        border: 4px solid rgba(249, 115, 22, 0.15);
-        border-top-color: #f97316;
-        border-radius: 50%;
-        animation: spin 0.8s linear infinite;
-      }
-      @keyframes spin {
-        to { transform: rotate(360deg); }
-      }
-
-      /* ===== Glass Card ===== */
-      .glass-card {
-        background: rgba(30, 22, 17, 0.75);
-        backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-      }
-      .glow-effect {
-        box-shadow: 0 0 30px -5px rgba(249, 115, 22, 0.25);
-      }
-
-      /* ===== Scroll-Triggered Entrance Animations ===== */
-      .reveal {
-        opacity: 0;
-        transform: translateY(40px);
-        transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-      }
-      .reveal.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      .reveal-left {
-        opacity: 0;
-        transform: translateX(-60px);
-        transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-      }
-      .reveal-left.visible {
-        opacity: 1;
-        transform: translateX(0);
-      }
-      .reveal-right {
-        opacity: 0;
-        transform: translateX(60px);
-        transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-      }
-      .reveal-right.visible {
-        opacity: 1;
-        transform: translateX(0);
-      }
-      .reveal-scale {
-        opacity: 0;
-        transform: scale(0.85);
-        transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-      }
-      .reveal-scale.visible {
-        opacity: 1;
-        transform: scale(1);
-      }
-
-      /* Staggered delays for children */
-      .stagger-1 { transition-delay: 0.1s; }
-      .stagger-2 { transition-delay: 0.2s; }
-      .stagger-3 { transition-delay: 0.3s; }
-      .stagger-4 { transition-delay: 0.4s; }
-
-      /* ===== Card Hover Effects ===== */
-      .card-hover {
-        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                    box-shadow 0.4s ease,
-                    border-color 0.4s ease;
-      }
-      .card-hover:hover {
-        transform: translateY(-8px) scale(1.02);
-        box-shadow: 0 20px 40px -12px rgba(249, 115, 22, 0.2);
-      }
-
-      /* ===== Animated Gradient Background ===== */
-      .hero-gradient {
-        background: 
-          radial-gradient(ellipse 80% 50% at 50% -20%, rgba(249, 115, 22, 0.12) 0%, transparent 50%),
-          radial-gradient(ellipse 60% 40% at 80% 50%, rgba(251, 146, 60, 0.08) 0%, transparent 50%),
-          radial-gradient(ellipse 60% 40% at 20% 60%, rgba(245, 158, 11, 0.06) 0%, transparent 50%);
-        animation: gradientShift 8s ease-in-out infinite alternate;
-      }
-      @keyframes gradientShift {
-        0% { 
-          background-position: 0% 0%, 100% 50%, 0% 60%; 
-        }
-        100% { 
-          background-position: 100% 0%, 0% 50%, 100% 60%; 
-        }
-      }
-
-      /* ===== Floating Particles ===== */
-      .particle {
-        position: absolute;
-        border-radius: 50%;
-        pointer-events: none;
-        animation: float linear infinite;
-      }
-      @keyframes float {
-        0% {
-          transform: translateY(100vh) rotate(0deg);
-          opacity: 0;
-        }
-        10% { opacity: 1; }
-        90% { opacity: 1; }
-        100% {
-          transform: translateY(-100px) rotate(720deg);
-          opacity: 0;
-        }
-      }
-
-      /* ===== Typing Cursor ===== */
-      .typing-cursor::after {
-        content: '|';
-        animation: blink 0.8s step-end infinite;
-        color: #fb923c;
-        font-weight: 300;
-      }
-      @keyframes blink {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0; }
-      }
-
-      /* ===== Mobile Menu Transition ===== */
-      #mobile-menu {
-        max-height: 0;
+      .loader-bar {
+        width: 120px;
+        height: 2px;
+        background: rgba(245, 158, 11, 0.15);
+        border-radius: 2px;
         overflow: hidden;
-        transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                    opacity 0.3s ease,
-                    padding 0.4s ease;
-        opacity: 0;
-        padding-top: 0;
-        padding-bottom: 0;
+        position: relative;
       }
-      #mobile-menu.menu-open {
-        max-height: 200px;
-        opacity: 1;
-        padding-top: 1rem;
-        padding-bottom: 1rem;
+      .loader-bar::after {
+        content: '';
+        position: absolute;
+        left: -40%;
+        width: 40%;
+        height: 100%;
+        background: #f59e0b;
+        border-radius: 2px;
+        animation: barSlide 0.8s ease-in-out infinite;
       }
-
-      /* ===== Scroll-to-Top Button ===== */
-      #scroll-top {
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(12px);
-        transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease, background-color 0.3s ease;
-      }
-      #scroll-top.show {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
+      @keyframes barSlide {
+        0% { left: -40%; }
+        100% { left: 100%; }
       }
 
-      /* ===== Navbar Active Link ===== */
+      /* ===== Noise texture overlay ===== */
+      .noise-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        opacity: 0.025;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+        background-repeat: repeat;
+        background-size: 256px 256px;
+      }
+
+      /* ===== Navbar ===== */
+      .nav-glass {
+        background: rgba(9, 9, 11, 0.8);
+        backdrop-filter: blur(20px) saturate(1.5);
+        -webkit-backdrop-filter: blur(20px) saturate(1.5);
+      }
       .nav-link {
         position: relative;
         transition: color 0.3s ease;
@@ -219,310 +108,694 @@
       .nav-link::after {
         content: '';
         position: absolute;
-        bottom: -4px;
-        left: 50%;
+        bottom: -2px;
+        left: 0;
         width: 0;
-        height: 2px;
-        background: linear-gradient(90deg, #fb923c, #f59e0b);
-        border-radius: 1px;
-        transition: width 0.3s ease, left 0.3s ease;
+        height: 1.5px;
+        background: #f59e0b;
+        transition: width 0.3s ease;
       }
       .nav-link:hover::after,
       .nav-link.active::after {
         width: 100%;
-        left: 0;
       }
-      .nav-link.active {
-        color: #fb923c;
+      .nav-link.active { color: #f59e0b; }
+
+      /* ===== Hero gradient mesh ===== */
+      .hero-mesh {
+        background:
+          radial-gradient(ellipse 50% 80% at 25% 0%, rgba(245, 158, 11, 0.08) 0%, transparent 60%),
+          radial-gradient(ellipse 40% 60% at 75% 20%, rgba(217, 119, 6, 0.06) 0%, transparent 50%);
       }
 
-      /* ===== Profile Image Rings Animation ===== */
-      .profile-pulse-ring {
-        animation: profilePulseRing 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      /* ===== Grid lines (decorative) ===== */
+      .grid-lines {
+        background-image:
+          linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+        background-size: 60px 60px;
       }
-      .profile-orbit-ring {
-        animation: profileRotateSlow 20s linear infinite;
+
+      /* ===== Scroll reveal ===== */
+      .reveal {
+        opacity: 0;
+        transform: translateY(32px);
+        transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
       }
-      @keyframes profilePulseRing {
-        0%, 100% {
-          transform: scale(1);
-          opacity: 0.8;
-          box-shadow: 0 0 15px rgba(249, 115, 22, 0.35);
-        }
-        50% {
-          transform: scale(1.08);
-          opacity: 0.25;
-          box-shadow: 0 0 25px rgba(249, 115, 22, 0.55);
-        }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
       }
-      @keyframes profileRotateSlow {
+      .stagger-1 { transition-delay: 0.08s; }
+      .stagger-2 { transition-delay: 0.16s; }
+      .stagger-3 { transition-delay: 0.24s; }
+      .stagger-4 { transition-delay: 0.32s; }
+      .stagger-5 { transition-delay: 0.40s; }
+      .stagger-6 { transition-delay: 0.48s; }
+
+      /* ===== Card hover ===== */
+      .card-lift {
+        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                    box-shadow 0.35s ease,
+                    border-color 0.35s ease;
+      }
+      .card-lift:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 48px -12px rgba(0, 0, 0, 0.5);
+        border-color: rgba(245, 158, 11, 0.2);
+      }
+
+      /* ===== Button press ===== */
+      .btn-press {
+        transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+      }
+      .btn-press:hover {
+        transform: translateY(-1px);
+      }
+      .btn-press:active {
+        transform: translateY(1px);
+      }
+
+      /* ===== Typing Cursor ===== */
+      .typing-cursor::after {
+        content: '|';
+        animation: blink 0.7s step-end infinite;
+        color: #f59e0b;
+        font-weight: 300;
+        margin-left: 2px;
+      }
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+      }
+
+      /* ===== Skill bar ===== */
+      .skill-fill {
+        transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        width: 0;
+      }
+      .skill-fill.animated {
+        /* width is set via inline style */
+      }
+
+      /* ===== Timeline ===== */
+      .timeline-line {
+        position: absolute;
+        left: 18px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(180deg, rgba(245, 158, 11, 0.4) 0%, rgba(245, 158, 11, 0.05) 100%);
+      }
+      .timeline-dot {
+        width: 12px;
+        height: 12px;
+        background: #f59e0b;
+        border-radius: 50%;
+        position: absolute;
+        left: 13px;
+        top: 4px;
+        box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.15);
+      }
+
+      /* ===== Mobile Menu ===== */
+      #mobile-menu {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                    opacity 0.3s ease;
+        opacity: 0;
+      }
+      #mobile-menu.menu-open {
+        max-height: 240px;
+        opacity: 1;
+      }
+
+      /* ===== Scroll-to-top ===== */
+      #scroll-top {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(12px);
+        transition: all 0.3s ease;
+      }
+      #scroll-top.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      /* ===== Stat counter ===== */
+      .stat-number {
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* ===== Profile image ===== */
+      .profile-glow {
+        box-shadow: 0 0 60px -10px rgba(245, 158, 11, 0.2);
+      }
+      .profile-ring {
+        background: conic-gradient(from 0deg, #f59e0b, #d97706, #f59e0b, transparent, #f59e0b);
+        animation: ringRotate 8s linear infinite;
+      }
+      @keyframes ringRotate {
         from { transform: rotate(0deg); }
         to { transform: rotate(360deg); }
       }
 
-      /* ===== Section Divider ===== */
-      .section-divider {
-        height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.3), transparent);
+      /* ===== Section accent line ===== */
+      .accent-line {
+        width: 48px;
+        height: 3px;
+        background: #f59e0b;
+        border-radius: 2px;
       }
 
-      /* ===== Icon Float Animation ===== */
-      .icon-float {
-        transition: transform 0.4s ease, background-color 0.4s ease;
-      }
-      .card-hover:hover .icon-float {
-        transform: translateY(-4px) scale(1.1);
+      /* ===== Quote card ===== */
+      .quote-mark {
+        font-size: 5rem;
+        line-height: 1;
+        color: rgba(245, 158, 11, 0.15);
+        font-family: Georgia, serif;
       }
 
-      /* ===== Smooth body reveal after preloader ===== */
-      .body-hidden {
-        overflow: hidden;
+      /* ===== Footer gradient ===== */
+      .footer-gradient {
+        background: linear-gradient(180deg, rgba(9,9,11,0) 0%, rgba(245,158,11,0.03) 100%);
       }
     </style>
   </head>
-  <body class="bg-brand-950 text-slate-100 font-sans antialiased selection:bg-brand-500 selection:text-white min-h-screen body-hidden">
-    
+  <body class="bg-surface-950 text-zinc-300 font-sans antialiased min-h-screen overflow-x-hidden">
+
     <!-- Preloader -->
     <div id="preloader">
-      <div class="loader-spinner"></div>
+      <div class="loader-bar"></div>
     </div>
 
-    <!-- Floating Particles Container -->
-    <div id="particles" class="fixed inset-0 pointer-events-none z-0 overflow-hidden"></div>
+    <!-- Noise Texture -->
+    <div class="noise-overlay"></div>
 
     <!-- Navbar -->
-    <header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 glass-card border-b border-stone-800/80">
-      <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-        <a href="#" class="inline-block group transition-all duration-300 hover:scale-105">
-          <span class="text-2xl font-black italic text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-300 to-orange-500 hover:from-orange-300 hover:to-amber-200 transition-all duration-300" style="font-family: 'Playfair Display', serif;">Rafael</span>
+    <header id="navbar" class="fixed top-0 left-0 w-full z-50 nav-glass border-b border-zinc-800/50">
+      <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="#" class="font-display font-bold text-lg text-white tracking-tight hover:text-amber-400 transition-colors duration-300">
+          R<span class="text-amber-500">.</span>
         </a>
 
-        <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-          <a href="#about" class="nav-link hover:text-brand-400">Tentang Saya</a>
-          <a href="#career" class="nav-link hover:text-brand-400">Target Karier</a>
+        <nav class="hidden md:flex items-center gap-8 text-[13px] font-medium text-zinc-400 uppercase tracking-widest">
+          <a href="#about" class="nav-link hover:text-white">Tentang</a>
+          <a href="#skills" class="nav-link hover:text-white">Keahlian</a>
+          <a href="#journey" class="nav-link hover:text-white">Perjalanan</a>
+          <a href="#career" class="nav-link hover:text-white">Karier</a>
         </nav>
 
-        <!-- Mobile Menu Toggle -->
-        <button id="menu-btn" class="md:hidden text-slate-300 hover:text-white focus:outline-none transition-transform duration-300" aria-label="Toggle menu">
-          <i class="fa-solid fa-bars text-2xl transition-transform duration-300"></i>
+        <button id="menu-btn" class="md:hidden text-zinc-400 hover:text-white transition-colors" aria-label="Toggle menu">
+          <i class="fa-solid fa-bars text-xl"></i>
         </button>
       </div>
 
-      <!-- Mobile Menu Dropdown -->
-      <div id="mobile-menu" class="md:hidden glass-card border-t border-stone-800 px-6 flex flex-col gap-4 text-slate-300">
-        <a href="#about" class="nav-link hover:text-brand-400 transition-colors">Tentang Saya</a>
-        <a href="#career" class="nav-link hover:text-brand-400 transition-colors">Target Karier</a>
+      <div id="mobile-menu" class="md:hidden border-t border-zinc-800/50 px-6 py-0 flex flex-col gap-3 text-zinc-400 text-sm nav-glass">
+        <a href="#about" class="nav-link py-1 hover:text-white transition-colors">Tentang</a>
+        <a href="#skills" class="nav-link py-1 hover:text-white transition-colors">Keahlian</a>
+        <a href="#journey" class="nav-link py-1 hover:text-white transition-colors">Perjalanan</a>
+        <a href="#career" class="nav-link py-1 hover:text-white transition-colors">Karier</a>
       </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="pt-36 pb-20 md:pt-48 md:pb-32 px-6 relative overflow-hidden hero-gradient">
-      
-      <!-- Animated Glow Orbs -->
-      <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand-500/15 rounded-full blur-3xl pointer-events-none animate-pulse"></div>
-      <div class="absolute bottom-0 right-0 w-72 h-72 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" style="animation: gradientShift 6s ease-in-out infinite alternate-reverse"></div>
+    <!-- ===================== HERO ===================== -->
+    <section class="relative min-h-screen flex items-center pt-16 overflow-hidden hero-mesh">
+      <div class="absolute inset-0 grid-lines pointer-events-none"></div>
 
-      <div class="max-w-6xl mx-auto grid md:grid-cols-12 gap-12 items-center relative z-10">
-        <div class="md:col-span-7 space-y-6 text-center md:text-left reveal-left">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-card text-brand-400 text-xs font-semibold tracking-wide uppercase border border-brand-500/20 hover:border-brand-500/40 transition-all duration-300 hover:shadow-lg hover:shadow-brand-500/10">
-            <i class="fa-solid fa-graduation-cap"></i> Siswa SMKN 68 Jakarta
+      <!-- Ambient light orbs -->
+      <div class="absolute top-[-20%] left-[10%] w-[500px] h-[500px] bg-amber-500/[0.04] rounded-full blur-[120px] pointer-events-none"></div>
+      <div class="absolute bottom-[-10%] right-[5%] w-[400px] h-[400px] bg-amber-600/[0.03] rounded-full blur-[100px] pointer-events-none"></div>
+
+      <div class="max-w-5xl mx-auto px-6 w-full relative z-10">
+        <div class="grid lg:grid-cols-12 gap-16 items-center">
+          <!-- Text Column -->
+          <div class="lg:col-span-7 space-y-8 text-center lg:text-left reveal">
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-zinc-800/60 border border-zinc-700/50 text-amber-400 text-xs font-semibold tracking-wider uppercase">
+              <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+              SMKN 68 Jakarta
+            </div>
+
+            <!-- Headline -->
+            <h1 class="font-display text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.1]">
+              Halo, Saya<br/>
+              <span id="typed-name" class="text-amber-400"></span><span class="typing-cursor"></span>
+            </h1>
+
+            <!-- Description -->
+            <p class="text-zinc-400 text-lg sm:text-xl max-w-lg leading-relaxed mx-auto lg:mx-0">
+              Siswa kejuruan berdedikasi tinggi dengan semangat eksplorasi, mengejar karier di industri teknologi digital.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+              <a href="#about" class="btn-press px-7 py-3.5 bg-amber-500 hover:bg-amber-400 text-surface-950 font-semibold rounded-lg shadow-lg shadow-amber-500/20 flex items-center gap-2.5 text-sm">
+                <span>Tentang Saya</span>
+                <i class="fa-solid fa-arrow-down text-xs"></i>
+              </a>
+              <a href="#career" class="btn-press px-7 py-3.5 bg-zinc-800/80 hover:bg-zinc-700/80 text-zinc-200 font-semibold rounded-lg border border-zinc-700/60 hover:border-zinc-600 text-sm">
+                Target Karier
+              </a>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="flex items-center gap-8 justify-center lg:justify-start pt-4">
+              <div class="text-center lg:text-left">
+                <div class="text-2xl font-bold text-white stat-number" data-count="68">0</div>
+                <div class="text-xs text-zinc-500 mt-0.5 uppercase tracking-wider">SMKN</div>
+              </div>
+              <div class="w-px h-10 bg-zinc-800"></div>
+              <div class="text-center lg:text-left">
+                <div class="text-2xl font-bold text-white stat-number" data-count="2030">0</div>
+                <div class="text-xs text-zinc-500 mt-0.5 uppercase tracking-wider">Lulus</div>
+              </div>
+              <div class="w-px h-10 bg-zinc-800"></div>
+              <div class="text-center lg:text-left">
+                <div class="text-2xl font-bold text-white">PNJ</div>
+                <div class="text-xs text-zinc-500 mt-0.5 uppercase tracking-wider">Target</div>
+              </div>
+            </div>
           </div>
-          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
-            Halo, Saya <br class="hidden sm:inline" />
-            <span id="typed-name" class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-300 to-orange-500"></span><span class="typing-cursor"></span>
-          </h1>
-          <p class="text-stone-300 text-lg max-w-xl leading-relaxed mx-auto md:mx-0">Siswa kejuruan yang berdedikasi tinggi dalam mencari karier, eksplorasi yang luas, serta semangat yang kuat.</p>
-          <div class="flex flex-wrap gap-4 justify-center md:justify-start pt-2">
-            <a href="#about" class="group px-6 py-3.5 bg-brand-600 hover:bg-brand-500 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-brand-600/30 hover:shadow-brand-500/40 hover:scale-105 flex items-center gap-2">
-              <span>Tentang Saya</span>
-              <i class="fa-solid fa-arrow-right text-sm transition-transform duration-300 group-hover:translate-x-1"></i>
-            </a>
-            <a href="#career" class="px-6 py-3.5 glass-card hover:bg-stone-800 text-slate-200 font-semibold rounded-xl transition-all duration-300 border border-stone-700/80 hover:border-brand-500/30 hover:scale-105">Target Karier</a>
-          </div>
-        </div>
 
-        <!-- Profile Avatar Card -->
-        <div class="md:col-span-5 flex justify-center reveal-right">
-          <div class="relative w-64 h-64 sm:w-80 sm:h-80 rounded-3xl p-3 glass-card glow-effect transition-all duration-500 hover:shadow-[0_0_50px_-5px_rgba(249,115,22,0.4)]">
-            <div class="w-full h-full rounded-2xl bg-stone-900/90 flex flex-col items-center justify-center text-center p-6 border border-stone-800 relative overflow-hidden group">
-              <!-- Hover Shimmer Effect -->
-              <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></div>
-              
-              <!-- Foto Profil -->
-              <div class="relative w-28 h-28 mb-4 flex items-center justify-center">
-                <!-- Glowing Aura -->
-                <div class="absolute -inset-2 rounded-full bg-gradient-to-tr from-brand-500/30 via-amber-500/20 to-orange-600/30 blur-md pointer-events-none"></div>
-                
-                <!-- Rotating subtle dashed accent ring -->
-                <div class="profile-orbit-ring absolute -inset-2 rounded-full border border-dashed border-brand-400/40 pointer-events-none"></div>
+          <!-- Profile Column -->
+          <div class="lg:col-span-5 flex justify-center reveal" style="transition-delay: 0.2s;">
+            <div class="relative">
+              <!-- Decorative ring -->
+              <div class="absolute -inset-4 rounded-3xl profile-ring opacity-20 blur-[1px]"></div>
 
-                <!-- Pulsing outer ring -->
-                <div class="profile-pulse-ring absolute -inset-1 rounded-full border-2 border-brand-400/70 pointer-events-none"></div>
+              <!-- Card -->
+              <div class="relative w-72 h-80 sm:w-80 sm:h-[22rem] rounded-2xl bg-zinc-900/90 border border-zinc-800/80 p-6 flex flex-col items-center justify-center text-center profile-glow overflow-hidden">
+                <!-- Subtle shine on hover -->
+                <div class="absolute inset-0 bg-gradient-to-br from-amber-500/[0.03] to-transparent pointer-events-none"></div>
 
-                <!-- Avatar Image Box -->
-                <div class="relative w-full h-full rounded-full p-[2px] bg-gradient-to-tr from-brand-500 via-amber-400 to-orange-500 shadow-xl overflow-hidden">
-                  <img
-                    src="Muka gw.jpg"
-                    alt="Rafael Cahya Ramadhan"
-                    class="w-full h-full rounded-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    onerror="
-                      this.onerror = null;
-                      this.src = 'https://ui-avatars.com/api/?name=Rafael+Cahya+Ramadhan&background=ea580c&color=fff&size=128';
-                    "
-                  />
+                <!-- Profile Image -->
+                <div class="relative w-28 h-28 mb-5">
+                  <!-- Glow -->
+                  <div class="absolute -inset-2 rounded-full bg-amber-500/15 blur-lg"></div>
+                  <!-- Ring -->
+                  <div class="relative w-full h-full rounded-full p-[2.5px] bg-gradient-to-br from-amber-400 via-amber-500 to-amber-600">
+                    <img
+                      src="Muka gw.jpg"
+                      alt="Rafael Cahya Ramadhan"
+                      class="w-full h-full rounded-full object-cover"
+                      onerror="
+                        this.onerror = null;
+                        this.src = 'https://ui-avatars.com/api/?name=Rafael+Cahya+Ramadhan&background=d97706&color=fff&size=128&bold=true';
+                      "
+                    />
+                  </div>
+                </div>
+
+                <h3 class="font-display text-xl font-bold text-white">Rafael Cahya R.</h3>
+                <p class="text-amber-400 text-sm font-medium mt-1.5">Siswa SMKN 68 Jakarta</p>
+
+                <!-- Social Icons -->
+                <div class="flex items-center gap-3 mt-5">
+                  <a href="https://www.instagram.com/rf.l0_/" class="w-9 h-9 rounded-lg bg-zinc-800/80 border border-zinc-700/50 flex items-center justify-center text-zinc-400 hover:text-amber-400 hover:border-amber-500/30 transition-all duration-300 text-sm" aria-label="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                  </a>
+                  <a href="https://github.com/rfl07" class="w-9 h-9 rounded-lg bg-zinc-800/80 border border-zinc-700/50 flex items-center justify-center text-zinc-400 hover:text-amber-400 hover:border-amber-500/30 transition-all duration-300 text-sm" aria-label="GitHub">
+                    <i class="fa-brands fa-github"></i>
+                  </a>
+                  <a href="#" class="w-9 h-9 rounded-lg bg-zinc-800/80 border border-zinc-700/50 flex items-center justify-center text-zinc-400 hover:text-amber-400 hover:border-amber-500/30 transition-all duration-300 text-sm" aria-label="LinkedIn">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                  </a>
                 </div>
               </div>
-              <h3 class="text-xl font-bold text-white transition-colors duration-300 group-hover:text-brand-400">Rafael Cahya R.</h3>
-              <p class="text-brand-400 text-sm font-medium mt-1">SMKN 68 Jakarta</p>
-              <p class="text-xs text-stone-400 mt-2">Passion dalam suatu hal yang baru & Teknologi Digital</p>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Scroll Indicator -->
-      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 reveal" style="transition-delay: 1s;">
-        <a href="#about" class="flex flex-col items-center gap-2 text-stone-500 hover:text-brand-400 transition-colors duration-300">
-          <span class="text-xs tracking-widest uppercase">Scroll</span>
-          <i class="fa-solid fa-chevron-down text-sm animate-bounce"></i>
+      <!-- Scroll indicator -->
+      <div class="absolute bottom-10 left-1/2 -translate-x-1/2 reveal" style="transition-delay: 1.2s;">
+        <a href="#about" class="flex flex-col items-center gap-2 text-zinc-600 hover:text-amber-400 transition-colors duration-300">
+          <span class="text-[10px] tracking-[0.3em] uppercase">Scroll</span>
+          <div class="w-5 h-8 rounded-full border border-zinc-700 flex justify-center pt-1.5">
+            <div class="w-1 h-2 rounded-full bg-zinc-500 animate-bounce"></div>
+          </div>
         </a>
       </div>
     </section>
 
-    <!-- Section Divider -->
-    <div class="section-divider"></div>
-
-    <!-- About Section -->
-    <section id="about" class="py-20 px-6 relative">
-      <div class="max-w-6xl mx-auto">
-        <div class="text-center max-w-2xl mx-auto mb-16 reveal">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold text-brand-400 border border-brand-500/20 mb-4 tracking-wide uppercase">
-            <i class="fa-solid fa-user"></i> Tentang
+    <!-- ===================== ABOUT ===================== -->
+    <section id="about" class="py-24 sm:py-32 px-6 relative">
+      <div class="max-w-5xl mx-auto">
+        <!-- Section Header -->
+        <div class="mb-16 reveal">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="accent-line"></div>
+            <span class="text-amber-400 text-xs font-semibold tracking-[0.2em] uppercase">Tentang Saya</span>
           </div>
-          <h2 class="text-3xl sm:text-4xl font-bold text-white">Tentang Saya</h2>
-          <p class="text-stone-400 mt-3">Mengenal lebih dekat latar belakang, hobi, dan perjalanan hidup saya.</p>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-white">
+            Mengenal lebih dekat<br class="hidden sm:inline"/> siapa saya.
+          </h2>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-8">
-          <!-- Latar Belakang -->
-          <div class="glass-card p-8 rounded-2xl border border-stone-800 space-y-4 card-hover reveal stagger-1 group">
-            <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center text-xl icon-float">
+        <div class="grid lg:grid-cols-3 gap-6">
+          <!-- Card: Latar Belakang -->
+          <div class="card-lift bg-zinc-900/60 border border-zinc-800/60 rounded-xl p-7 space-y-4 reveal stagger-1 group">
+            <div class="w-11 h-11 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center text-lg">
               <i class="fa-solid fa-address-card"></i>
             </div>
-            <h3 class="text-xl font-bold text-white transition-colors duration-300 group-hover:text-brand-400">Latar Belakang</h3>
-            <p class="text-stone-300 text-sm leading-relaxed">Saya adalah siswa di SMKN 68 Jakarta yang memiliki ketertarikan mendalam pada dunia teknologi, dan pengembangan diri.</p>
+            <h3 class="font-display text-lg font-semibold text-white group-hover:text-amber-400 transition-colors duration-300">Latar Belakang</h3>
+            <p class="text-zinc-400 text-sm leading-relaxed">
+              Saya adalah siswa di SMKN 68 Jakarta yang memiliki ketertarikan mendalam pada dunia teknologi dan pengembangan diri secara berkelanjutan.
+            </p>
           </div>
 
-          <!-- Hobi -->
-          <div class="glass-card p-8 rounded-2xl border border-stone-800 space-y-4 card-hover reveal stagger-2 group">
-            <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl icon-float">
+          <!-- Card: Hobi -->
+          <div class="card-lift bg-zinc-900/60 border border-zinc-800/60 rounded-xl p-7 space-y-4 reveal stagger-2 group">
+            <div class="w-11 h-11 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center text-lg">
               <i class="fa-solid fa-gamepad"></i>
             </div>
-            <h3 class="text-xl font-bold text-white transition-colors duration-300 group-hover:text-amber-400">Hobi</h3>
-            <p class="text-stone-300 text-sm leading-relaxed">Suka mengeksplorasi hal yang baru, suka Berbincang, mencoba menjadi lebih baik, mencoba semua hal yang menarik.</p>
+            <h3 class="font-display text-lg font-semibold text-white group-hover:text-amber-400 transition-colors duration-300">Hobi</h3>
+            <p class="text-zinc-400 text-sm leading-relaxed">
+              Suka mengeksplorasi hal baru, berbincang, serta mencoba semua hal menarik yang bisa memperluas wawasan dan pengalaman.
+            </p>
           </div>
 
-          <!-- Perjalanan Hidup -->
-          <div class="glass-card p-8 rounded-2xl border border-stone-800 space-y-4 card-hover reveal stagger-3 group">
-            <div class="w-12 h-12 rounded-xl bg-orange-500/10 text-orange-400 flex items-center justify-center text-xl icon-float">
-              <i class="fa-solid fa-route"></i>
+          <!-- Card: Motivasi -->
+          <div class="card-lift bg-zinc-900/60 border border-zinc-800/60 rounded-xl p-7 space-y-4 reveal stagger-3 group">
+            <div class="w-11 h-11 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center text-lg">
+              <i class="fa-solid fa-fire"></i>
             </div>
-            <h3 class="text-xl font-bold text-white transition-colors duration-300 group-hover:text-orange-400">Perjalanan Hidup</h3>
-            <p class="text-stone-300 text-sm leading-relaxed">
-              Berawal dari rasa ingin tahu tentang cara kerja aplikasi dan internet, kini saya terus berproses di SMKN 68 untuk mengasah keahlian teknis guna bersiap memasuki dunia industri.
+            <h3 class="font-display text-lg font-semibold text-white group-hover:text-amber-400 transition-colors duration-300">Motivasi</h3>
+            <p class="text-zinc-400 text-sm leading-relaxed">
+              Didorong oleh keinginan kuat untuk mandiri secara finansial dan membuktikan bahwa kerja keras sejak dini membuka jalan menuju masa depan.
             </p>
           </div>
         </div>
+
+        <!-- Quote -->
+        <div class="mt-12 reveal" style="transition-delay: 0.35s;">
+          <div class="relative bg-zinc-900/40 border border-zinc-800/40 rounded-xl p-8 sm:p-10">
+            <span class="quote-mark absolute top-4 left-6">"</span>
+            <blockquote class="relative z-10 text-zinc-300 text-base sm:text-lg italic leading-relaxed max-w-2xl ml-4 sm:ml-8">
+              Berawal dari rasa ingin tahu tentang cara kerja aplikasi dan internet, kini saya terus berproses untuk mengasah keahlian teknis guna bersiap memasuki dunia industri.
+            </blockquote>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- Section Divider -->
-    <div class="section-divider"></div>
-
-    <!-- Career Section -->
-    <section id="career" class="py-20 px-6 bg-stone-900/40 relative">
-      <div class="max-w-6xl mx-auto">
-        <div class="text-center max-w-2xl mx-auto mb-16 reveal">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold text-brand-400 border border-brand-500/20 mb-4 tracking-wide uppercase">
-            <i class="fa-solid fa-rocket"></i> Karier
+    <!-- ===================== SKILLS ===================== -->
+    <section id="skills" class="py-24 sm:py-32 px-6 relative">
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-zinc-900/30 to-transparent pointer-events-none"></div>
+      <div class="max-w-5xl mx-auto relative z-10">
+        <!-- Section Header -->
+        <div class="mb-16 reveal">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="accent-line"></div>
+            <span class="text-amber-400 text-xs font-semibold tracking-[0.2em] uppercase">Keahlian</span>
           </div>
-          <h2 class="text-3xl sm:text-4xl font-bold text-white">Target Karier & Masa Depan</h2>
-          <p class="text-stone-400 mt-3">Target utama saya setelah lulus dari SMKN 68 Jakarta adalah <span class="text-brand-400 font-semibold">Bekerja sambil Kuliah di Politeknik Negeri Jakarta (PNJ)</span>.</p>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-white">
+            Kemampuan yang<br class="hidden sm:inline"/> sedang saya kembangkan.
+          </h2>
         </div>
 
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <!-- Kuliah di PNJ -->
-          <div class="glass-card p-6 rounded-2xl border border-stone-800 flex flex-col gap-3 card-hover reveal stagger-1 group">
-            <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center text-2xl mb-1 icon-float">
-              <i class="fa-solid fa-graduation-cap"></i>
+        <div class="grid lg:grid-cols-2 gap-12">
+          <!-- Technical Skills -->
+          <div class="space-y-6 reveal stagger-1">
+            <h3 class="text-sm font-semibold text-zinc-500 uppercase tracking-widest mb-4">Technical</h3>
+
+            <div class="space-y-5">
+              <div class="skill-item">
+                <div class="flex justify-between text-sm mb-2">
+                  <span class="text-zinc-200 font-medium">HTML & PYTHON</span>
+                  <span class="text-amber-400 font-semibold">75%</span>
+                </div>
+                <div class="h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+                  <div class="skill-fill h-full bg-gradient-to-r from-amber-500 to-amber-400 rounded-full" data-width="75%"></div>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <div class="flex justify-between text-sm mb-2">
+                  <span class="text-zinc-200 font-medium">Microsoft Office</span>
+                  <span class="text-amber-400 font-semibold">80%</span>
+                </div>
+                <div class="h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+                  <div class="skill-fill h-full bg-gradient-to-r from-amber-500 to-amber-400 rounded-full" data-width="80%"></div>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <div class="flex justify-between text-sm mb-2">
+                  <span class="text-zinc-200 font-medium">Jaringan Komputer</span>
+                  <span class="text-amber-400 font-semibold">65%</span>
+                </div>
+                <div class="h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+                  <div class="skill-fill h-full bg-gradient-to-r from-amber-500 to-amber-400 rounded-full" data-width="65%"></div>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <div class="flex justify-between text-sm mb-2">
+                  <span class="text-zinc-200 font-medium">Troubleshooting PC</span>
+                  <span class="text-amber-400 font-semibold">70%</span>
+                </div>
+                <div class="h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+                  <div class="skill-fill h-full bg-gradient-to-r from-amber-500 to-amber-400 rounded-full" data-width="70%"></div>
+                </div>
+              </div>
             </div>
-            <h4 class="font-bold text-white text-lg transition-colors duration-300 group-hover:text-brand-400">Kuliah di PNJ</h4>
-            <p class="text-xs text-stone-400 leading-relaxed">Melanjutkan pendidikan vokasi di Politeknik Negeri Jakarta untuk memperdalam ilmu akademik dan gelar spesialisasi.</p>
+          </div>
+
+          <!-- Soft Skills -->
+          <div class="space-y-6 reveal stagger-2">
+            <h3 class="text-sm font-semibold text-zinc-500 uppercase tracking-widest mb-4">Soft Skills</h3>
+
+            <div class="grid grid-cols-2 gap-4">
+              <div class="card-lift bg-zinc-900/60 border border-zinc-800/60 rounded-xl p-5 text-center group">
+                <div class="text-2xl mb-3 text-amber-400">
+                  <i class="fa-solid fa-comments"></i>
+                </div>
+                <p class="text-sm text-zinc-200 font-medium group-hover:text-amber-400 transition-colors">Komunikasi</p>
+              </div>
+
+              <div class="card-lift bg-zinc-900/60 border border-zinc-800/60 rounded-xl p-5 text-center group">
+                <div class="text-2xl mb-3 text-amber-400">
+                  <i class="fa-solid fa-people-group"></i>
+                </div>
+                <p class="text-sm text-zinc-200 font-medium group-hover:text-amber-400 transition-colors">Kerja Tim</p>
+              </div>
+
+              <div class="card-lift bg-zinc-900/60 border border-zinc-800/60 rounded-xl p-5 text-center group">
+                <div class="text-2xl mb-3 text-amber-400">
+                  <i class="fa-solid fa-lightbulb"></i>
+                </div>
+                <p class="text-sm text-zinc-200 font-medium group-hover:text-amber-400 transition-colors">Problem Solving</p>
+              </div>
+
+              <div class="card-lift bg-zinc-900/60 border border-zinc-800/60 rounded-xl p-5 text-center group">
+                <div class="text-2xl mb-3 text-amber-400">
+                  <i class="fa-solid fa-clock"></i>
+                </div>
+                <p class="text-sm text-zinc-200 font-medium group-hover:text-amber-400 transition-colors">Manajemen Waktu</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== JOURNEY ===================== -->
+    <section id="journey" class="py-24 sm:py-32 px-6 relative">
+      <div class="max-w-5xl mx-auto">
+        <!-- Section Header -->
+        <div class="mb-16 reveal">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="accent-line"></div>
+            <span class="text-amber-400 text-xs font-semibold tracking-[0.2em] uppercase">Perjalanan</span>
+          </div>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-white">
+            Langkah demi langkah<br class="hidden sm:inline"/> menuju tujuan.
+          </h2>
+        </div>
+
+        <!-- Timeline -->
+        <div class="relative pl-10 space-y-12">
+          <div class="timeline-line"></div>
+
+          <!-- Item 1 -->
+          <div class="relative reveal stagger-1">
+            <div class="timeline-dot"></div>
+            <div class="bg-zinc-900/60 border border-zinc-800/60 rounded-xl p-6 card-lift">
+              <div class="flex flex-wrap items-center gap-3 mb-3">
+                <span class="px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 text-xs font-semibold">Pendidikan</span>
+                <span class="text-xs text-zinc-500">2026 — 2030</span>
+              </div>
+              <h4 class="font-display text-lg font-semibold text-white mb-2">SMKN 68 Jakarta</h4>
+              <p class="text-zinc-400 text-sm leading-relaxed">
+                Memulai perjalanan pendidikan kejuruan, mempelajari dasar-dasar teknologi informasi, jaringan komputer, dan keterampilan teknis lainnya.
+              </p>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="relative reveal stagger-2">
+            <div class="timeline-dot"></div>
+            <div class="bg-zinc-900/60 border border-zinc-800/60 rounded-xl p-6 card-lift">
+              <div class="flex flex-wrap items-center gap-3 mb-3">
+                <span class="px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 text-xs font-semibold">Eksplorasi</span>
+                <span class="text-xs text-zinc-500">Selama Bersekolah</span>
+              </div>
+              <h4 class="font-display text-lg font-semibold text-white mb-2">Belajar & Bereksperimen</h4>
+              <p class="text-zinc-400 text-sm leading-relaxed">
+                Mendalami cara kerja aplikasi dan internet secara mandiri, mencoba berbagai proyek kecil, dan terus mengasah kemampuan teknis di luar jam sekolah.
+              </p>
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="relative reveal stagger-3">
+            <div class="timeline-dot"></div>
+            <div class="bg-zinc-900/60 border border-zinc-800/60 rounded-xl p-6 card-lift">
+              <div class="flex flex-wrap items-center gap-3 mb-3">
+                <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold">Rencana</span>
+                <span class="text-xs text-zinc-500">2030 — Masa Depan</span>
+              </div>
+              <h4 class="font-display text-lg font-semibold text-white mb-2">Bekerja & Kuliah di PNJ</h4>
+              <p class="text-zinc-400 text-sm leading-relaxed">
+                Setelah lulus, memasuki dunia kerja industri sambil melanjutkan studi vokasi di Politeknik Negeri Jakarta untuk memperdalam keahlian.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CAREER ===================== -->
+    <section id="career" class="py-24 sm:py-32 px-6 relative">
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-zinc-900/30 to-transparent pointer-events-none"></div>
+      <div class="max-w-5xl mx-auto relative z-10">
+        <!-- Section Header -->
+        <div class="mb-16 reveal">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="accent-line"></div>
+            <span class="text-amber-400 text-xs font-semibold tracking-[0.2em] uppercase">Target Karier</span>
+          </div>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-white">
+            Visi dan target<br class="hidden sm:inline"/> masa depan saya.
+          </h2>
+          <p class="text-zinc-400 mt-4 max-w-xl text-base leading-relaxed">
+            Target utama setelah lulus dari SMKN 68 Jakarta adalah <span class="text-amber-400 font-semibold">bekerja sambil kuliah di Politeknik Negeri Jakarta</span>.
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-6">
+          <!-- Kuliah di PNJ -->
+          <div class="card-lift bg-zinc-900/60 border border-zinc-800/60 rounded-xl p-7 reveal stagger-1 group">
+            <div class="flex items-start gap-5">
+              <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl shrink-0">
+                <i class="fa-solid fa-graduation-cap"></i>
+              </div>
+              <div>
+                <h4 class="font-display text-base font-semibold text-white group-hover:text-amber-400 transition-colors duration-300 mb-2">Kuliah di PNJ</h4>
+                <p class="text-zinc-400 text-sm leading-relaxed">
+                  Melanjutkan pendidikan vokasi di Politeknik Negeri Jakarta untuk memperdalam ilmu akademik dan meraih gelar spesialisasi.
+                </p>
+              </div>
+            </div>
           </div>
 
           <!-- Bekerja di Industri -->
-          <div class="glass-card p-6 rounded-2xl border border-stone-800 flex flex-col gap-3 card-hover reveal stagger-2 group">
-            <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-2xl mb-1 icon-float">
-              <i class="fa-solid fa-briefcase"></i>
+          <div class="card-lift bg-zinc-900/60 border border-zinc-800/60 rounded-xl p-7 reveal stagger-2 group">
+            <div class="flex items-start gap-5">
+              <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl shrink-0">
+                <i class="fa-solid fa-briefcase"></i>
+              </div>
+              <div>
+                <h4 class="font-display text-base font-semibold text-white group-hover:text-amber-400 transition-colors duration-300 mb-2">Bekerja di Industri</h4>
+                <p class="text-zinc-400 text-sm leading-relaxed">
+                  Menerapkan keahlian praktis hasil pembelajaran di SMKN 68 secara langsung pada dunia kerja profesional.
+                </p>
+              </div>
             </div>
-            <h4 class="font-bold text-white text-lg transition-colors duration-300 group-hover:text-amber-400">Bekerja di Industri</h4>
-            <p class="text-xs text-stone-400 leading-relaxed">Menerapkan keahlian praktis hasil pembelajaran di SMKN 68 secara langsung pada dunia kerja profesional.</p>
           </div>
 
           <!-- Kemandirian Finansial -->
-          <div class="glass-card p-6 rounded-2xl border border-stone-800 flex flex-col gap-3 card-hover reveal stagger-3 group">
-            <div class="w-12 h-12 rounded-xl bg-orange-500/10 text-orange-400 flex items-center justify-center text-2xl mb-1 icon-float">
-              <i class="fa-solid fa-wallet"></i>
+          <div class="card-lift bg-zinc-900/60 border border-zinc-800/60 rounded-xl p-7 reveal stagger-3 group">
+            <div class="flex items-start gap-5">
+              <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl shrink-0">
+                <i class="fa-solid fa-wallet"></i>
+              </div>
+              <div>
+                <h4 class="font-display text-base font-semibold text-white group-hover:text-amber-400 transition-colors duration-300 mb-2">Kemandirian Finansial</h4>
+                <p class="text-zinc-400 text-sm leading-relaxed">
+                  Membiayai pendidikan perkuliahan secara mandiri dari hasil kerja keras di dunia industri.
+                </p>
+              </div>
             </div>
-            <h4 class="font-bold text-white text-lg transition-colors duration-300 group-hover:text-orange-400">Kemandirian Finansial</h4>
-            <p class="text-xs text-stone-400 leading-relaxed">Membiayai pendidikan perkuliahan PNJ secara mandiri dari hasil kerja keras di dunia industri.</p>
           </div>
 
-          <!-- Manajemen Waktu & Disiplin -->
-          <div class="glass-card p-6 rounded-2xl border border-stone-800 flex flex-col gap-3 card-hover reveal stagger-4 group">
-            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-2xl mb-1 icon-float">
-              <i class="fa-solid fa-clock-rotate-left"></i>
+          <!-- Manajemen Waktu -->
+          <div class="card-lift bg-zinc-900/60 border border-zinc-800/60 rounded-xl p-7 reveal stagger-4 group">
+            <div class="flex items-start gap-5">
+              <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl shrink-0">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+              </div>
+              <div>
+                <h4 class="font-display text-base font-semibold text-white group-hover:text-amber-400 transition-colors duration-300 mb-2">Manajemen Waktu</h4>
+                <p class="text-zinc-400 text-sm leading-relaxed">
+                  Membangun disiplin tinggi serta membagi fokus secara profesional antara karier kerja dan studi di PNJ.
+                </p>
+              </div>
             </div>
-            <h4 class="font-bold text-white text-lg transition-colors duration-300 group-hover:text-emerald-400">Manajemen Waktu</h4>
-            <p class="text-xs text-stone-400 leading-relaxed">Membangun disiplin tinggi serta membagi fokus secara profesional antara karier kerja dan studi di PNJ.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-10 text-center border-t border-stone-800/80 relative overflow-hidden">
-      <div class="absolute inset-0 bg-gradient-to-t from-brand-950 to-transparent pointer-events-none"></div>
-      <div class="relative z-10 space-y-4 reveal">
-        <div class="flex justify-center gap-4">
-          <a href="#" class="w-10 h-10 rounded-full glass-card flex items-center justify-center text-stone-400 hover:text-brand-400 hover:border-brand-500/40 transition-all duration-300 hover:scale-110 border border-stone-700/60" aria-label="Instagram">
-            <i class="fa-brands fa-instagram"></i>
-          </a>
-          <a href="#" class="w-10 h-10 rounded-full glass-card flex items-center justify-center text-stone-400 hover:text-brand-400 hover:border-brand-500/40 transition-all duration-300 hover:scale-110 border border-stone-700/60" aria-label="GitHub">
-            <i class="fa-brands fa-github"></i>
-          </a>
-          <a href="#" class="w-10 h-10 rounded-full glass-card flex items-center justify-center text-stone-400 hover:text-brand-400 hover:border-brand-500/40 transition-all duration-300 hover:scale-110 border border-stone-700/60" aria-label="LinkedIn">
-            <i class="fa-brands fa-linkedin-in"></i>
-          </a>
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="py-12 px-6 border-t border-zinc-800/50 relative footer-gradient">
+      <div class="max-w-5xl mx-auto">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-6 reveal">
+          <!-- Brand -->
+          <div class="flex items-center gap-3">
+            <span class="font-display font-bold text-white text-lg">R<span class="text-amber-500">.</span></span>
+            <span class="text-zinc-600 text-sm">|</span>
+            <span class="text-zinc-500 text-sm">Rafael Cahya Ramadhan</span>
+          </div>
+
+          <!-- Social -->
+          <div class="flex items-center gap-3">
+            <a href="https://www.instagram.com/rf.l0_/" class="w-9 h-9 rounded-lg bg-zinc-800/60 border border-zinc-800/80 flex items-center justify-center text-zinc-500 hover:text-amber-400 hover:border-amber-500/30 transition-all duration-300 text-sm" aria-label="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://github.com/rfl07" class="w-9 h-9 rounded-lg bg-zinc-800/60 border border-zinc-800/80 flex items-center justify-center text-zinc-500 hover:text-amber-400 hover:border-amber-500/30 transition-all duration-300 text-sm" aria-label="GitHub">
+              <i class="fa-brands fa-github"></i>
+            </a>
+            <a href="#" class="w-9 h-9 rounded-lg bg-zinc-800/60 border border-zinc-800/80 flex items-center justify-center text-zinc-500 hover:text-amber-400 hover:border-amber-500/30 transition-all duration-300 text-sm" aria-label="LinkedIn">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+          </div>
         </div>
-        <p class="text-stone-500 text-sm">&copy; 2026 Rafael Cahya Ramadhan - SMKN 68 Jakarta. Dibuat dengan hati ❤️.</p>
+
+        <div class="mt-8 pt-6 border-t border-zinc-800/30 text-center">
+          <p class="text-zinc-600 text-xs tracking-wide">&copy; 2026 Rafael Cahya Ramadhan — Dibuat Dengan ❤️</p>
+        </div>
       </div>
     </footer>
 
-    <!-- Scroll to Top Button -->
-    <button id="scroll-top" class="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-brand-600 hover:bg-brand-500 text-white shadow-lg shadow-brand-600/30 flex items-center justify-center text-lg hover:scale-110 active:scale-95" aria-label="Scroll to top">
+    <!-- Scroll to Top -->
+    <button id="scroll-top" class="fixed bottom-6 right-6 z-50 w-11 h-11 rounded-xl bg-amber-500 hover:bg-amber-400 text-surface-950 shadow-lg shadow-amber-500/20 flex items-center justify-center text-sm btn-press" aria-label="Scroll to top">
       <i class="fa-solid fa-arrow-up"></i>
     </button>
 
-    <!-- All Scripts -->
+    <!-- ===================== SCRIPTS ===================== -->
     <script>
       // ===== Preloader =====
       window.addEventListener('load', () => {
         const preloader = document.getElementById('preloader');
         preloader.classList.add('loaded');
-        document.body.classList.remove('body-hidden');
-        // Remove preloader from DOM after transition
-        setTimeout(() => preloader.remove(), 600);
+        document.body.style.overflow = '';
+        setTimeout(() => preloader.remove(), 500);
       });
 
       // ===== Typing Animation =====
@@ -534,14 +807,13 @@
           if (i <= text.length) {
             el.textContent = text.substring(0, i);
             i++;
-            setTimeout(type, 80);
+            setTimeout(type, 70);
           }
         }
-        // Start typing after a small delay for dramatic effect
-        setTimeout(type, 800);
+        setTimeout(type, 600);
       })();
 
-      // ===== Mobile Menu Toggle with Animation =====
+      // ===== Mobile Menu =====
       const menuBtn = document.getElementById('menu-btn');
       const mobileMenu = document.getElementById('mobile-menu');
       const menuIcon = menuBtn.querySelector('i');
@@ -550,30 +822,20 @@
       menuBtn.addEventListener('click', () => {
         menuOpen = !menuOpen;
         mobileMenu.classList.toggle('menu-open');
-        // Animate icon rotation
-        if (menuOpen) {
-          menuIcon.classList.remove('fa-bars');
-          menuIcon.classList.add('fa-xmark');
-          menuBtn.style.transform = 'rotate(180deg)';
-        } else {
-          menuIcon.classList.remove('fa-xmark');
-          menuIcon.classList.add('fa-bars');
-          menuBtn.style.transform = 'rotate(0deg)';
-        }
+        menuIcon.classList.toggle('fa-bars', !menuOpen);
+        menuIcon.classList.toggle('fa-xmark', menuOpen);
       });
 
-      // Close mobile menu when clicking a link
       mobileMenu.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
           menuOpen = false;
           mobileMenu.classList.remove('menu-open');
           menuIcon.classList.remove('fa-xmark');
           menuIcon.classList.add('fa-bars');
-          menuBtn.style.transform = 'rotate(0deg)';
         });
       });
 
-      // ===== Scroll-Triggered Reveal Animations =====
+      // ===== Scroll Reveal =====
       const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -581,15 +843,58 @@
           }
         });
       }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -60px 0px'
+        threshold: 0.08,
+        rootMargin: '0px 0px -40px 0px'
       });
 
-      document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
+      document.querySelectorAll('.reveal').forEach(el => {
         revealObserver.observe(el);
       });
 
-      // ===== Navbar Scroll Effects =====
+      // ===== Skill Bars Animation =====
+      const skillObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const bar = entry.target.querySelector('.skill-fill');
+            if (bar && !bar.classList.contains('animated')) {
+              bar.classList.add('animated');
+              bar.style.width = bar.dataset.width;
+            }
+          }
+        });
+      }, { threshold: 0.3 });
+
+      document.querySelectorAll('.skill-item').forEach(el => {
+        skillObserver.observe(el);
+      });
+
+      // ===== Stat Counter =====
+      const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            if (el.dataset.counted) return;
+            el.dataset.counted = 'true';
+            const target = parseInt(el.dataset.count);
+            const duration = 1500;
+            const start = performance.now();
+
+            function update(now) {
+              const progress = Math.min((now - start) / duration, 1);
+              const eased = 1 - Math.pow(1 - progress, 3);
+              el.textContent = Math.round(eased * target);
+              if (progress < 1) requestAnimationFrame(update);
+            }
+            requestAnimationFrame(update);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      document.querySelectorAll('.stat-number[data-count]').forEach(el => {
+        counterObserver.observe(el);
+      });
+
+      // ===== Navbar Effects =====
       const navbar = document.getElementById('navbar');
       const sections = document.querySelectorAll('section[id]');
       const navLinks = document.querySelectorAll('.nav-link');
@@ -597,16 +902,13 @@
       window.addEventListener('scroll', () => {
         const scrollY = window.scrollY;
 
-        // Navbar background opacity
-        if (scrollY > 50) {
-          navbar.style.boxShadow = '0 10px 40px rgba(0, 0, 0, 0.4)';
-          navbar.style.borderBottomColor = 'rgba(249, 115, 22, 0.1)';
+        if (scrollY > 60) {
+          navbar.style.borderBottomColor = 'rgba(245, 158, 11, 0.08)';
         } else {
-          navbar.style.boxShadow = 'none';
           navbar.style.borderBottomColor = '';
         }
 
-        // Active nav link highlighting
+        // Active nav highlighting
         let current = '';
         sections.forEach(section => {
           const sectionTop = section.offsetTop - 120;
@@ -625,55 +927,13 @@
       // ===== Scroll to Top =====
       const scrollTopBtn = document.getElementById('scroll-top');
       window.addEventListener('scroll', () => {
-        if (window.scrollY > 400) {
-          scrollTopBtn.classList.add('show');
-        } else {
-          scrollTopBtn.classList.remove('show');
-        }
+        scrollTopBtn.classList.toggle('show', window.scrollY > 500);
       });
       scrollTopBtn.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
 
-      // ===== Floating Particles =====
-      (function createParticles() {
-        const container = document.getElementById('particles');
-        const colors = ['#f97316', '#fb923c', '#f59e0b', '#fbbf24'];
-        
-        function spawnParticle() {
-          const particle = document.createElement('div');
-          particle.classList.add('particle');
-          const size = Math.random() * 4 + 2;
-          const x = Math.random() * 100;
-          const duration = Math.random() * 15 + 10;
-          const color = colors[Math.floor(Math.random() * colors.length)];
-          
-          particle.style.cssText = `
-            width: ${size}px;
-            height: ${size}px;
-            left: ${x}%;
-            bottom: -10px;
-            background: ${color};
-            opacity: 0;
-            animation-duration: ${duration}s;
-            animation-delay: 0s;
-          `;
-          
-          container.appendChild(particle);
-          
-          // Remove particle after animation completes
-          setTimeout(() => particle.remove(), duration * 1000);
-        }
-
-        // Spawn particles periodically
-        setInterval(spawnParticle, 2000);
-        // Initial burst
-        for (let i = 0; i < 6; i++) {
-          setTimeout(spawnParticle, i * 400);
-        }
-      })();
-
-      // ===== Smooth Anchor Scrolling (for browsers without scroll-smooth support) =====
+      // ===== Smooth Anchors =====
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
           const targetId = this.getAttribute('href');
